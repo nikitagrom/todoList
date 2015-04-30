@@ -47,5 +47,10 @@ object Task{
       ).as(task*)
     })
   }
+  def all():List[Task] = {
+    DB.withConnection(implicit c=>{
+      SQL("select * from Task").as(task*)
+    })
+  }
 }
 

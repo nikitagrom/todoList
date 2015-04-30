@@ -42,6 +42,12 @@ object Project{
       case None =>EmptyProject
     }
   }
+
+    def all():List[Project] = {
+    DB.withConnection(implicit c=>{
+      SQL("select * from Project").as(project*)
+    })
+    }
   }
 }
 object EmptyProject extends Project("empty","empty","empty")
