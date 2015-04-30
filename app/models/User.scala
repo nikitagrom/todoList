@@ -30,7 +30,8 @@ object User {
         'email -> email,
         'password -> password,
         'fullname -> name,
-        'isAdmin -> isAdmin).executeUpdate()
+        'isAdmin -> isAdmin
+      ).executeUpdate()
     }
     }
 

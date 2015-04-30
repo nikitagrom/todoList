@@ -75,7 +75,7 @@ class ApplicationSpec extends Specification {
        val user =  User.find("sergio@gmail.com")
         Project.create("Project1","folder",user)
         val project = Project.findByOwner(user)
-        Task.create("charge phone",project,false,"12.03.2016",project.folder)
+        Task.create("charge phone",project,false,new Date(),project.folder)
      //   Task.create("buy milk",project,false,"31.02.2016",project.folder)
         val task = Task.findByProject(project)
         task.head.name must equalTo("charge phone")
