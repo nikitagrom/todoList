@@ -34,12 +34,14 @@ object Project{
     ).executeUpdate()
     })
   }
-  def findByOwner(owner:User):Project ={DB.withConnection {implicit c=>
-    SQL("select * from Project where owner = {owner}").on(
-     'owner->owner.email
-    ).as(project.singleOpt) match {
-      case Some(x)=>x
-      case None =>EmptyProject
+  def findByOwner(owner:User):Project = {
+    DB.withConnection { implicit c =>
+      SQL("select * from Project where owner = {owner}").on(
+        'owner -> owner.email
+      ).as(project.singleOpt) match {
+        case Some(x) => x
+        case None => EmptyProject
+      }
     }
   }
 
@@ -48,7 +50,7 @@ object Project{
       SQL("select * from Project").as(project*)
     })
     }
-  }
+
 }
 object EmptyProject extends Project("empty","empty","empty")
 
