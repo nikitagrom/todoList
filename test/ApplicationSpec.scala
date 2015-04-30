@@ -1,4 +1,4 @@
-import models.models.Project
+
 import org.junit.Before
 import org.specs2.mutable._
 import org.specs2.runner._
@@ -7,6 +7,7 @@ import org.junit.runner._
 import play.api.test._
 import play.api.test.Helpers._
 import models._
+import java.util.Date
 
 
 
@@ -64,6 +65,22 @@ class ApplicationSpec extends Specification {
         Project.create("Project","folder",user)
         val project =  Project.findByOwner(user)
         project.name must equalTo("Project")
+      }
+    }
+  }
+  "Task name" should {
+    "Task" in {
+      running(FakeApplication()){
+        User.create("sergio@gmail.com","sergio","qwerty",false)
+       val user =  User.find("sergio@gmail.com")
+        Project.create("Project1","folder",user)
+        val project = Project.findByOwner(user)
+        Task.create("charge phone",project,false,"12.03.2016",project.folder)
+     //   Task.create("buy milk",project,false,"31.02.2016",project.folder)
+        val task = Task.findByProject(project)
+        task.head.name must equalTo("charge phone")
+
+
       }
     }
   }

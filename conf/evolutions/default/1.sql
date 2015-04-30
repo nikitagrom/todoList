@@ -16,7 +16,18 @@ folder VARCHAR (255)NOT NULL ,
 owner VARCHAR (255) NOT NULL ,
 FOREIGN KEY (owner) REFERENCES User(email)
 );
+CREATE TABLE Task(
+id bigint(20)NOT NULL AUTO_INCREMENT,
+name VARCHAR (255) NOT NULL ,
+project VARCHAR (255) NOT NULL ,
+isDone boolean NOT NULL ,
+dueDate VARCHAR (255) NOT NULL ,
+folder VARCHAR (255) NOT NULL ,
+
+FOREIGN KEY (project,folder) REFERENCES Project(projectname,folder),
+);
 # --- !Downs
 
 DROP TABLE User;
-DROP TABLE Project
+DROP TABLE Project;
+DROP TABLE Task;

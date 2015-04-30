@@ -33,6 +33,7 @@ object User {
         'isAdmin -> isAdmin).executeUpdate()
     }
     }
+
   }
 
   def delete(email: String) = {
@@ -64,6 +65,6 @@ object User {
       }
     })
   }
-
 }
+
 object EmptyUser extends User("empty","empty","empty")

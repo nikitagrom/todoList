@@ -7,15 +7,16 @@ import play.api.Play.current
 /**
  * Created by Nikita on 24.04.2015.
  */
-case class Project private(name:String ,folder:String,owner:String)
+case class Project (name:String ,folder:String,owner:String)
 object Project{
   val project = {
-    get[String]("projectname")~
-    get[String]("folder")~
-    get[String]("owner") map {
-      case name~folder~owner=>Project(name,folder,owner)
+    get[String]("projectname") ~
+      get[String]("folder") ~
+      get[String]("owner") map {
+      case name ~ folder ~ owner => Project(name, folder, owner)
     }
   }
+
   def create(name:String,folder:String,owner:User) = {
     DB.withConnection(implicit c=>{
       SQL("insert into Project(projectname,folder,owner) values({projectname},{folder},{owner})").on(
